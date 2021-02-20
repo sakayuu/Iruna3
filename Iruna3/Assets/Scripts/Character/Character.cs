@@ -7,6 +7,6 @@ public class Character
 {
     Status status;
 
-    string name;
+    protected string name;
 
 }
