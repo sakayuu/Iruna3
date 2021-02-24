@@ -8,11 +8,17 @@ public class button : MonoBehaviour
 
     public bool ClickFlag { get => clickFlag; set => SetClickFlag(value); }
 
+    /// <summary>
+    /// ボタンが押された時にフラグをtrue
+    /// </summary>
     public void OnClick()
     {
         ClickFlag = true;
     }
 
+    /// <summary>
+    /// ボタンのリセット(ボタンを押したら必ず呼ぶ)
+    /// </summary>
     public void ButtonReset()
     {
         ClickFlag = false;

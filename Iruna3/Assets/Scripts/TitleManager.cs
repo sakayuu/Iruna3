@@ -28,7 +28,7 @@ public class TitleManager : MonoBehaviour
         if (start.GetComponent<button>().ClickFlag)
         {
             SceneManager.LoadScene("CharaChoiceScene");
-            start.GetComponent<button>().ClickFlag = false;
+            start.GetComponent<button>().ButtonReset();
             Debug.Log(start.GetComponent<button>().ClickFlag);
         }
     }
