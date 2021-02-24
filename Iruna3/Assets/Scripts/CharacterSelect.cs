@@ -45,14 +45,14 @@ public class CharacterSelect : MonoBehaviour
             if (select <= 0)
                 return;
             select--;
-            Debug.Log(select);
+            left.GetComponent<button>().ButtonReset();
         }
         if (right.GetComponent<button>().ClickFlag)
         {
             if (select >= 1)
                 return;
             select++;
-            Debug.Log(select);
+            right.GetComponent<button>().ButtonReset();
         }
        
        
@@ -64,8 +64,8 @@ public class CharacterSelect : MonoBehaviour
         {
             select = 1;
         }
-        Level.text = "Lv" + playerData[select][1];
-        CharaName.text = playerData[select][0];
-        camera.gameObject.transform.position = new Vector3(5 * select, 1, -10);
+        Level.text = "Lv" + playerData[select][1];//レベルテキストに書き出し
+        CharaName.text = playerData[select][0];//キャラネームテキストに書き出し
+        camera.gameObject.transform.position = new Vector3(5 * select, 1, -10);//selectによってカメラの位置を変える
     }
 }
