@@ -7,7 +7,10 @@ using UnityEngine;
 /// </summary>
 public class EnemyFactory
 {
-    
+    public void MakeEnemy()
+    {
+
+    }
 
 
 }

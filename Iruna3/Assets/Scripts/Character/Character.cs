@@ -9,4 +9,9 @@ public class Character
 
     protected string name;
 
+    protected Vector3 pos;
+
+    public virtual Vector3 GetPos() => pos;
+   
+
 }

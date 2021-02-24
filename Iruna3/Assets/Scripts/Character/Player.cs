@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class Player : Character
 {
+    private GameObject playerModel = null;
+
+    public Player(string name, Vector3 pos)
+    {
+        this.name = name;
+        this.pos = pos;
+    }
+
+    public void Initialize()
+    {
+        playerModel = (GameObject)Resources.Load("Models/TestModel");
+        playerModel = GameObject.Instantiate(playerModel, pos, Quaternion.identity);
+    }
 
     public void Update()
     {
@@ -12,7 +25,20 @@ public class Player : Character
 
     public void Move()
     {
-        
+        if (Input.GetKey(KeyCode.W))
+            pos.z += 0.01f;
+        if (Input.GetKey(KeyCode.A))
+            pos.x -= 0.01f;
+        if (Input.GetKey(KeyCode.S))
+            pos.z -= 0.01f;
+        if (Input.GetKey(KeyCode.D))
+            pos.x += 0.01f;
+        ModelMove(pos);
+    }
+
+    private void ModelMove(in Vector3 pos)
+    {
+        playerModel.transform.position = pos;
     }
 
     public void UseSkill()
@@ -30,4 +56,7 @@ public class Player : Character
 
     }
 
+    public override Vector3 GetPos() => base.GetPos();
+    public GameObject GetPlayerModel() => playerModel;
+    
 }
