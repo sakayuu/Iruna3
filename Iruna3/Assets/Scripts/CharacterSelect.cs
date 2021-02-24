@@ -10,8 +10,11 @@ public class CharacterSelect : MonoBehaviour
     public GameObject[] player = new GameObject[3];
     public Text Level, CharaName;
     public int select = 0;
-    public Button right, left;
-
+    [SerializeField]
+    public GameObject right;
+    [SerializeField]
+    public GameObject left;
+    public GameObject camera;
 
     void Start()
     {
@@ -32,15 +35,27 @@ public class CharacterSelect : MonoBehaviour
             player[i]= (GameObject)Resources.Load("Character/"+playerData[i][0]);
             player[i]=UnityEngine.Object.Instantiate(player[i], new Vector3(i*5,0,0), Quaternion.identity);
         }
-        right = GetComponent<Button>();
-        left = GetComponent<Button>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //right.onClick.AddListener(SelsectUp);
-        //left.onClick.AddListener(SelsevtDown);
+        if (left.GetComponent<button>().ClickFlag)
+        {
+            if (select <= 0)
+                return;
+            select--;
+            Debug.Log(select);
+        }
+        if (right.GetComponent<button>().ClickFlag)
+        {
+            if (select >= 1)
+                return;
+            select++;
+            Debug.Log(select);
+        }
+       
+       
         if (Input.GetKeyDown(KeyCode.A))
         {
             select = 0;
@@ -51,18 +66,6 @@ public class CharacterSelect : MonoBehaviour
         }
         Level.text = "Lv" + playerData[select][1];
         CharaName.text = playerData[select][0];
-        
-    }
-    void SelsectUp()
-    {
-        if (select >= 2)
-            return;
-        select++;
-    }
-    void SelsevtDown()
-    {
-        if (select <= 0)
-            return;
-        select--;
+        camera.gameObject.transform.position = new Vector3(5 * select, 1, -10);
     }
 }
