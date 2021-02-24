@@ -44,5 +44,12 @@ class Enemy : Character
     {
         this.name = name;
     }
+
+    public void Attack()
+    {
+
+    }
+
+
 }
 

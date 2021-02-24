@@ -321,6 +321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 923861004}
+  - component: {fileID: 923861005}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -344,6 +345,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &923861005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923861003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 509c4704bf7971f46b10eec106ca49c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start: {fileID: 2105295318}
+  credit: {fileID: 347389104}
 --- !u!1 &1035487854
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,6 +867,7 @@ GameObject:
   - component: {fileID: 2105295322}
   - component: {fileID: 2105295321}
   - component: {fileID: 2105295320}
+  - component: {fileID: 2105295323}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -921,7 +937,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2105295321}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2105295323}
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2105295321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -958,3 +985,15 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105295318}
   m_CullTransparentMesh: 0
+--- !u!114 &2105295323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105295318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 654d19075c6e0e243ad9dbfa619c4259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
