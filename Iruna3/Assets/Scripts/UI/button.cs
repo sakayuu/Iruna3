@@ -6,11 +6,16 @@ public class button : MonoBehaviour
 {
     private bool clickFlag;
 
-    public bool ClickFlag { get => GetClickFlag(clickFlag); set => SetClickFlag(value); }
+    public bool ClickFlag { get => clickFlag; set => SetClickFlag(value); }
 
     public void OnClick()
     {
         ClickFlag = true;
+    }
+
+    public void ButtonReset()
+    {
+        ClickFlag = false;
     }
 
     private void SetClickFlag(bool clickFlag)
@@ -20,13 +25,4 @@ public class button : MonoBehaviour
         this.clickFlag = clickFlag;
     }
 
-    private bool GetClickFlag(bool clickFlag)
-    {
-        if(clickFlag)
-        {
-            clickFlag = false;
-            return true;
-        }
-        return clickFlag;
-    }
 }
