@@ -10,7 +10,12 @@ public class button : MonoBehaviour
 
     public void OnClick()
     {
-        clickFlag = true;
+        ClickFlag = true;
+    }
+
+    public void ButtonReset()
+    {
+        ClickFlag = false;
     }
 
     private void SetClickFlag(bool clickFlag)
@@ -18,8 +23,6 @@ public class button : MonoBehaviour
         if (this.clickFlag == clickFlag)
             return;
         this.clickFlag = clickFlag;
-
-        if (this.clickFlag)
-            this.clickFlag = false;
     }
+
 }
