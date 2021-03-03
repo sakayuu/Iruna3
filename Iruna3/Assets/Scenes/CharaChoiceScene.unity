@@ -1178,6 +1178,7 @@ MonoBehaviour:
   select: 0
   right: {fileID: 787678119}
   left: {fileID: 569276830}
+  start: {fileID: 6557951}
   camera: {fileID: 896271931}
 --- !u!4 &1080383697
 Transform:
