@@ -1,17 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.Data;
+
+/// <summary>
+/// 
+/// </summary>
+enum Attribute
+{
+    fire,
+    water,
+    wind,
+    earth,
+    dark,
+    light
+}
 
 public class Character
 {
-    Status status;
-
     protected string name;
 
     protected Vector3 pos;
 
-    public virtual Vector3 GetPos() => pos;
-   
+    protected GameObject model;
 
+    public virtual Vector3 GetPos() => pos;
+
+    public virtual void ModelLoad(out GameObject model, in string modelFolderName, in string modelName)
+    {
+        GameObject modelData = null;
+        modelData = (GameObject)Resources.Load(modelFolderName + "/" + modelName);
+        model = GameObject.Instantiate(modelData, Vector3.zero, Quaternion.identity);
+    }
 }

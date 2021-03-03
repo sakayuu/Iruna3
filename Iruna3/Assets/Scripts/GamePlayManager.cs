@@ -5,8 +5,12 @@ using UnityEngine;
 public class GamePlayManager : MonoBehaviour
 {
     private Player player = null;
-    private CameraManager camera = null;
-    [SerializeField, Header("UI")]
+    private CameraManager cameraManager = null;
+    [SerializeField]
+    private GameObject cameraObj = null;
+    [SerializeField]
+    private GameObject stage = null;
+    [SerializeField]
     public GameObject UI = null;
 
     void Start()
@@ -19,14 +23,23 @@ public class GamePlayManager : MonoBehaviour
     void Update()
     {
         player.Update();
-        camera.Update(player);
+        cameraManager.Update(player, MouseClickCheck());
     }
 
     private void Create()
     {
-        camera = new CameraManager(Camera.main);
-        player = new Player("マスター",Vector3.up);
+        cameraManager = new CameraManager(cameraObj);
+        player = new Player("マスター", Vector3.up);
 
+    }
+
+    /// <summary>
+    /// マウスの入力をチェック
+    /// </summary>
+    /// <returns>ボタンの判定はインスペクタでやってる</returns>
+    private bool MouseClickCheck()
+    {
+        return UI.transform.GetChild(0).GetChild(2).GetComponent<button>().ClickFlag;
     }
 
     private void Initialize()

@@ -21,7 +21,8 @@ public class button : MonoBehaviour
     /// </summary>
     public void ButtonReset()
     {
-        ClickFlag = false;
+        if (ClickFlag)
+            ClickFlag = false;
     }
 
     private void SetClickFlag(bool clickFlag)

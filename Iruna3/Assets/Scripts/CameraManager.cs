@@ -4,38 +4,63 @@ using UnityEngine;
 
 public class CameraManager
 {
-    private Camera camera;
-    private Vector3 offset;
+    private GameObject cameraObj = null;
+    //カメラの回転速度
+    public float rotateSpeed = 30f;
+    //カメラの視点制限
+    private const float ANGLE_LIMIT_UP = 60f;
+    private const float ANGLE_LIMIT_DOWN = -10f;
 
 
-    public CameraManager(Camera camera)
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="cameraObj">シーン上のカメラ</param>
+    public CameraManager(GameObject cameraObj)
     {
-        this.camera = camera;
+        this.cameraObj = cameraObj;
     }
 
-    public void Update(Player player)
+    public void Update(Player player, bool rotateCameraFlag)
     {
         CameraMove(player.GetPos());
-        CameraRotation(player.GetPlayerModel().transform.position);
-        offset = camera.transform.position - player.GetPos();
-        
+
+        CameraRotation(rotateCameraFlag);
+
     }
 
-    private void CameraMove(Vector3 pos)
+    /// <summary>
+    /// カメラの座標移動
+    /// </summary>
+    /// <param name="pos">追従用座標</param>
+    private void CameraMove(in Vector3 pos)
     {
-        camera.transform.position = pos + offset;
+        cameraObj.transform.position = pos;
     }
 
-    private void CameraRotation(Vector3 pos)
+    /// <summary>
+    /// カメラの回転移動
+    /// </summary>
+    /// <param name="rotateCameraFlag">回転させるか</param>
+    private void CameraRotation(in bool rotateCameraFlag)
     {
-        if (Input.GetKey(KeyCode.UpArrow))
-            camera.transform.RotateAround(pos, camera.transform.right, 0.1f);
-        if (Input.GetKey(KeyCode.DownArrow))
-            camera.transform.RotateAround(pos, camera.transform.right, -0.1f);
-        if (Input.GetKey(KeyCode.LeftArrow))
-            camera.transform.RotateAround(pos, Vector3.up, -0.1f);
-        if (Input.GetKey(KeyCode.RightArrow))
-            camera.transform.RotateAround(pos, Vector3.up, 0.1f);
-        offset = camera.transform.position - pos;
+        if (!rotateCameraFlag)
+            return;
+        RotateCameraAngle();
+
+        float angle_x = 180f <= cameraObj.transform.eulerAngles.x ? cameraObj.transform.eulerAngles.x - 360 : cameraObj.transform.eulerAngles.x;
+        cameraObj.transform.eulerAngles = new Vector3(
+            Mathf.Clamp(angle_x, ANGLE_LIMIT_DOWN, ANGLE_LIMIT_UP),
+            cameraObj.transform.eulerAngles.y,
+            cameraObj.transform.eulerAngles.z);
+    }
+
+    /// <summary>
+    /// マウスの移動量を回転に変換
+    /// </summary>
+    private void RotateCameraAngle()
+    {
+        Vector3 angle = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
+        cameraObj.transform.eulerAngles += new Vector3(angle.y, angle.x);
     }
 }

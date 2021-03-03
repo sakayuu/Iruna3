@@ -5,31 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class TitleManager : MonoBehaviour
 {
-    [SerializeField, Header("スタート")]
-    GameObject start;
-    [SerializeField, Header("クレジット")]
-    GameObject credit;
+    [SerializeField]
+    GameObject start = null;
+    [SerializeField]
+    GameObject credit = null;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        ButtonCheck();
     }
 
-    void ButtonCheck()
-    {
-        if (start.GetComponent<button>().ClickFlag)
-        {
-            SceneManager.LoadScene("CharaChoiceScene");
-            start.GetComponent<button>().ButtonReset();
-            Debug.Log(start.GetComponent<button>().ClickFlag);
-        }
-    }
+    private void NextSceneLoad(string nextScene) => SceneManager.LoadScene(nextScene);
+
+    public void GamePlaySceneLoad() => NextSceneLoad("CharaChoiceScene");
+    
 }
