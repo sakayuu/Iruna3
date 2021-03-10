@@ -3,96 +3,104 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Data;
 
-public class Player : Character
+namespace Assets.Scripts.Character
 {
-    private Status status;
-    private Vector3 velocity;
-    private float moveSpeed = 0.01f;
-
-    private float speed = 2;
-
-    public Player(string name, Vector3 pos)
+    public class Player : Character
     {
-        this.name = name;
-        this.pos = pos;
-    }
+        private PlayerStatus status;
+        private Vector3 velocity;
+        private float moveSpeed = 0.01f;
 
-    public void Initialize()
-    {
-        ModelLoad(out model, "Models", "TestModel");
-    }
+        private float speed = 2;
 
-    public void Update()
-    {
-        Move();
-    }
+        public Player(string name, Vector3 pos)
+        {
+            Model = (GameObject)Resources.Load("Models/TestModel");
 
-    /// <summary>
-    /// 移動
-    /// </summary>
-    private void Move()
-    {
-        SetVelocity(ref velocity);
+            Create();
+        }
 
-        pos += FixedDirection() * speed;
-        ModelMove(pos);
-    }
+        protected override void AppendCreate()
+        {
+            base.AppendCreate();
+        }
 
-    private void ModelMove(in Vector3 pos)
-    {
-        model.transform.position = pos;
-        if (FixedDirection() != Vector3.zero)
-            model.transform.rotation = Quaternion.LookRotation(FixedDirection());
-    }
+        protected override void AppendInitialize()
+        {
+            base.AppendInitialize();
+        }
 
-    public void UseSkill()
-    {
+        protected override void AppendUpdate()
+        {
+            base.AppendUpdate();
 
-    }
+            Move();
+        }
+        
+        /// <summary>
+        /// 移動
+        /// </summary>
+        private void Move()
+        {
+            SetVelocity(ref velocity);
 
-    public void Buff()
-    {
+            ModelMove();
+        }
 
-    }
+        private void ModelMove()
+        {
+            Model.transform.position += FixedDirection() * speed;
+            if (FixedDirection() != Vector3.zero)
+                Model.transform.rotation = Quaternion.LookRotation(FixedDirection());
+        }
 
-    public void DeBuff()
-    {
+        public void UseSkill()
+        {
 
-    }
+        }
 
-    public override Vector3 GetPos() => base.GetPos();
-    public GameObject GetPlayerModel() => model;
+        public void Buff()
+        {
 
-    /// <summary>
-    /// 入力から計算して移動量をセット
-    /// </summary>
-    /// <param name="velocity">セット先</param>
-    private void SetVelocity(ref Vector3 velocity)
-    {
-        velocity = Vector3.zero;
-        float moveFix = 1;
+        }
 
-        if(Input.GetKey(KeyCode.W)|| Input.GetKey(KeyCode.S))
-            if(Input.GetKey(KeyCode.A)|| Input.GetKey(KeyCode.D))
-                moveFix = 0.71f;
+        public void DeBuff()
+        {
 
-        if (Input.GetKey(KeyCode.W))
-            velocity.z = moveSpeed * moveFix;
-        if (Input.GetKey(KeyCode.S))
-            velocity.z = -moveSpeed * moveFix;
-        if (Input.GetKey(KeyCode.A))
-            velocity.x = -moveSpeed * moveFix;
-        if (Input.GetKey(KeyCode.D))
-            velocity.x = moveSpeed * moveFix;
-    }
+        }
 
-    public Vector3 FixedDirection()
-    {
-        Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+        /// <summary>
+        /// 入力から計算して移動量をセット
+        /// </summary>
+        /// <param name="velocity">セット先</param>
+        private void SetVelocity(ref Vector3 velocity)
+        {
+            velocity = Vector3.zero;
+            float moveFix = 1;
 
-        Vector3 moveFoward = cameraForward * velocity.z + Camera.main.transform.right * velocity.x;
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+                    moveFix = 0.71f;
 
-        return moveFoward;
+            if (Input.GetKey(KeyCode.W))
+                velocity.z = moveSpeed * moveFix;
+            if (Input.GetKey(KeyCode.S))
+                velocity.z = -moveSpeed * moveFix;
+            if (Input.GetKey(KeyCode.A))
+                velocity.x = -moveSpeed * moveFix;
+            if (Input.GetKey(KeyCode.D))
+                velocity.x = moveSpeed * moveFix;
+        }
+
+        public Vector3 FixedDirection()
+        {
+            Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+
+            Vector3 moveFoward = cameraForward * velocity.z + Camera.main.transform.right * velocity.x;
+
+            return moveFoward;
+        }
+
     }
 
 }

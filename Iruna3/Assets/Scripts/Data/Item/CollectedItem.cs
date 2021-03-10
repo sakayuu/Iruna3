@@ -7,15 +7,12 @@ using UnityEngine;
 
 namespace Assets.Scripts.Data.Item
 {
-    [CreateAssetMenu(fileName = "CollectedItem", menuName = "CreateCollectedItem")]
+    [CreateAssetMenu(fileName = "CollectedItem", menuName = "ScriptableObjects/Items/CreateCollectedItem")]
     class CollectedItem : BaseItem
     {
-        //public CollectedItem(uint id,string name,string description,uint price)
-        //{
-        //    this.id = id;
-        //    this.name = name;
-        //    this.description = description;
-        //    this.price = price;
-        //}
+        public CollectedItem()
+        {
+            itemType = ItemType.Collected;
+        }
     }
 }

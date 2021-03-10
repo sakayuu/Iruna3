@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.Character;
 
 public class CameraManager
 {
     private GameObject cameraObj = null;
     //カメラの回転速度
-    public float rotateSpeed = 30f;
+    public float rotateSpeed = 10f;
     //カメラの視点制限
     private const float ANGLE_LIMIT_UP = 60f;
     private const float ANGLE_LIMIT_DOWN = -10f;
@@ -23,7 +24,7 @@ public class CameraManager
 
     public void Update(Player player, bool rotateCameraFlag)
     {
-        CameraMove(player.GetPos());
+        CameraMove(player.Model.transform.position);
 
         CameraRotation(rotateCameraFlag);
 
@@ -33,10 +34,7 @@ public class CameraManager
     /// カメラの座標移動
     /// </summary>
     /// <param name="pos">追従用座標</param>
-    private void CameraMove(in Vector3 pos)
-    {
-        cameraObj.transform.position = pos;
-    }
+    private void CameraMove(in Vector3 pos) => cameraObj.transform.position = pos;
 
     /// <summary>
     /// カメラの回転移動
@@ -60,7 +58,7 @@ public class CameraManager
     /// </summary>
     private void RotateCameraAngle()
     {
-        Vector3 angle = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
+        Vector3 angle = new Vector3(Input.GetAxis("Mouse X") * rotateSpeed, Input.GetAxis("Mouse Y") * rotateSpeed, 0);
         cameraObj.transform.eulerAngles += new Vector3(angle.y, angle.x);
     }
 }

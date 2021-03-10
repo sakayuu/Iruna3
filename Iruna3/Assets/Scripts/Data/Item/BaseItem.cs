@@ -7,19 +7,19 @@ using UnityEngine;
 
 namespace Assets.Scripts.Data.Item
 {
+    public enum ItemType
+    {
+        // 回復系
+        Recovery,
+        // 消費系
+        Consumables,
+        // 収集系
+        Collected,
+        // 装備系
+        Equipment,
+    }
     public abstract class BaseItem : ScriptableObject
     {
-        protected enum ItemType
-        {
-            // 回復系
-            Recovery,
-            // 消費系
-            Consumables,
-            // 収集系
-            Collected,
-            // 装備系
-            Equipment,
-        }
         [SerializeField]
         protected ItemType itemType = ItemType.Collected;
         [SerializeField]
