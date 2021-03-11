@@ -7,13 +7,18 @@ using UnityEngine;
 
 namespace Assets.Scripts.Data.Item
 {
-    [CreateAssetMenu(fileName = "RecoveryItem", menuName = "CreateRecoveryItem")]
+    [CreateAssetMenu(fileName = "RecoveryItem", menuName = "ScriptableObjects/Items/CreateRecoveryItem")]
     class RecoveryItem : BaseItem
     {
         [SerializeField]
         private int hpHealPoint = 1;
         [SerializeField]
         private int mpHealPoint = 1;
+
+        public RecoveryItem()
+        {
+            itemType = ItemType.Recovery;
+        }
 
         public void UseItem(ref int hp,ref int mp)
         {

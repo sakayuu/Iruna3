@@ -4,44 +4,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-class Enemy : Character
+namespace Assets.Scripts.Character.Enemy
 {
-    private EnemyStatus status;
+    class Enemy : Character
+    {
+        private EnemyStatus status;
 
-    /// <summary>
-    /// コンストラクタ
-    /// </summary>
-    //Enemy(
-    //    string name,
-    //    int level,
-    //    BaseItem[] dropItems,
-    //    bool[] specialAttack,
-    //    Attribute attribute,
-    //    int exp,
-    //    int hp,
-    //    int def,
-    //    Aggression aggression)
-    //{
-    //    this.name = name;
+        public GameObject Model { get => Model; set => Model = value; }
 
-    //    status.name = name;
-    //    status.level = level;
-    //    status.dropItems = dropItems;
-    //    status.specialAttack = specialAttack;
-    //    status.attribute = attribute;
-    //    status.exp = exp;
-    //    status.hp = hp;
-    //    status.def = def;
-    //    status.aggression = aggression;
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        Enemy()
+        {
+            status = Resources.Load<EnemyStatus>("TestEnemy");
 
-    //    //this.model = ModelLoad();
-    //}
+            Model = status.Model;
 
-    //public void Attack()
-    //{
+            Create();
 
-    //}
+        }
+
+        protected override void AppendCreate()
+        {
+            base.AppendCreate();
+            // ↓以下追加したい処理
 
 
+        }
+
+        protected override void AppendInitialize()
+        {
+            base.AppendInitialize();
+        }
+
+        protected override void AppendUpdate()
+        {
+            base.AppendUpdate();
+        }
+
+        //public void Attack()
+        //{
+
+        //}
+
+
+    }
 }
-
