@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using Assets.Scripts.Data.Item;
+using Assets.Scripts.Data.EnemySkills;
 
-namespace Assets.Scripts.Data
+namespace Assets.Scripts.Data.Status
 {
     [CreateAssetMenu(fileName = "EnemyStatus", menuName = "ScriptableObjects/Status/CreateEnemyStatus")]
     class EnemyStatus : ScriptableObject
@@ -28,7 +29,7 @@ namespace Assets.Scripts.Data
         [SerializeField] //死亡時に落とすアイテム
         private BaseItem[] dropItems = new BaseItem[4];
         [SerializeField] //特殊攻撃があるかどうか
-        private bool[] specialAttack;
+        private SpecialAttack[] specialAttack = null;
         [SerializeField] //属性
         private Attribute attributeParameter;
         [SerializeField] //倒したときに入手できる経験値
@@ -45,7 +46,7 @@ namespace Assets.Scripts.Data
         public string CharacterName { get => characterName; }
         public int Level { get => level; }
         public BaseItem[] DropItems { get => dropItems; }
-        public bool[] SpecialAttack { get => specialAttack; }
+        public SpecialAttack[] SpecialAttack { get => specialAttack; }
         public Attribute AttributeParameter { get => attributeParameter; set => attributeParameter = value; }
         public int Exp { get => exp; }
         public int Hp { get => hp; }
