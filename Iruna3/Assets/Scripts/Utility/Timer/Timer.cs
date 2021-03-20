@@ -8,11 +8,28 @@ namespace Assets.Scripts.Utility.Timer
 {
     abstract class Timer
     {
-        private float timeCount = 0;
-        
+        protected float timeCount = 0;
+        public float TimeCount { get => timeCount; set => timeCount = value; }
+
         public Timer()
         {
 
         }
+
+
+        public void Initialize()
+        {
+            AppendInitialize();
+        }
+
+        protected abstract void AppendInitialize();
+
+        public void Update()
+        {
+            AppendUpdate();
+        }
+
+        protected abstract void AppendUpdate();
+
     }
 }

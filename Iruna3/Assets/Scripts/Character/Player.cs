@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.Data;
+using Assets.Scripts.Data.Status;
 
 namespace Assets.Scripts.Character
 {
     public class Player : Character
     {
         private PlayerStatus status;
+        private PlayerLevelManager pLvManager;
         private Vector3 velocity;
         private float moveSpeed = 0.01f;
 

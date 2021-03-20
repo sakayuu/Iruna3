@@ -40,7 +40,7 @@ namespace Assets.Scripts.Character
 
         #endregion
 
-        private void ModelLoad(ref GameObject model) => model = GameObject.Instantiate(model, Vector3.zero, Quaternion.identity);
+        private void ModelLoad(ref GameObject model) => model = GameObject.Instantiate(model, Vector3.up, Quaternion.identity);
         private void ModelUnload() => GameObject.Destroy(model);
 
         private void CheckDeadFlag(bool deadFlag)

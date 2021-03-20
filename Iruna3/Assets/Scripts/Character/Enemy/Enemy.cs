@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Data;
+﻿using Assets.Scripts.Data.Status;
 using Assets.Scripts.Data.Item;
 using System.Collections;
 using System.Collections.Generic;
